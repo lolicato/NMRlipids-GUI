@@ -16,7 +16,7 @@ import random
 import pandas as pd
 import math
 
-def ShowTable2(SortedQualities, quality):
+def ShowTableGui(SortedQualities, quality):
     """
     Shows a table of simulation qualities against experimental data in a Streamlit app.
 
@@ -94,7 +94,7 @@ if page == "Simulation Ranking":
             FFranking = json.load(json_file)
 
         # Display the table
-        ShowTable2(FFranking, 'TotalQuality')
+        ShowTableGui(FFranking, 'TotalQuality')
 
 # Content for other pages...
 elif page == "Lipid Ranking":
@@ -118,7 +118,7 @@ elif page == "Lipid Ranking":
                 FFranking = json.load(json_file)
 
             # Display the table
-            ShowTable2(FFranking, lipid)
+            ShowTableGui(FFranking, lipid)
 
 
 # Content for other pages...
@@ -144,7 +144,7 @@ elif page == "POPC-CHOL Ranking":
         if lipid in i['system']['COMPOSITION']:
             NewRank.append(i)
        
-    ShowTable2(NewRank,'POPC')
+    ShowTableGui(NewRank,'POPC')
 
 
 
