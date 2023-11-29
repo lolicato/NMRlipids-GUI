@@ -1,0 +1,40 @@
+Metadata-Version: 2.1
+Name: terregex
+Version: 0.0.6
+Summary: Regex transformation library
+Home-page: https://github.com/m1kit/terregex
+Author: mikit
+Author-email: me@mikit.dev
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/m1kit/terregex/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Terregex
+Terregex is structural regex transformation library. 
+
+## Installation
+You can install this library via [PyPI](https://pypi.org/project/terregex/).
+```
+pip install terregex
+```
+
+## Getting Started
+```py
+from terregex import Transformer, Literal
+
+trans = Transformer()
+
+@trans.add_rule()
+def transform_literal(node: Literal):
+    node.string = node.string.lower()
+
+trans('(Foo|Bar)+') # => '(foo|bar)+'
+```
+
+

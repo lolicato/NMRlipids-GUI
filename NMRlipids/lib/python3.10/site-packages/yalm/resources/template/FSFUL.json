@@ -1,0 +1,1 @@
+[{"type": "var", "name": "copyright", "content": {"type": "text", "content": "Copyright (C) 1992-1996, 1998-2012 Free Software Foundation, Inc."}, "pattern": ".{0,5000}"}, {"type": "text", "content": "\n\n      This configure script is free software; the Free Software Foundation gives unlimited permission to copy,\n         distribute and modify it."}]
