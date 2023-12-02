@@ -53,6 +53,10 @@ def ShowTableGui(SortedQualities, quality):
 
 
 
+# Set page configuration to wide layout
+st.set_page_config(layout="wide")
+
+
 # This defines the path for the NMRlipids databank on your computer.
 # Default is that this repository and the NMRlipids databank repository are cloned to the same folder.
 # If this is not the case, change this to the folder where the NMRlipids databank repository is located.
@@ -68,6 +72,9 @@ from databankLibrary import *
 # Initialize the databank
 systems = initialize_databank(databankPath)
 
+
+# Sidebar title
+st.sidebar.title("NMRlipids")
 
 # Sidebar for page selection
 page = st.sidebar.selectbox("Choose a page", ["Simulation Ranking", "Lipid Ranking", "POPC-CHOL Ranking"])
