@@ -129,54 +129,50 @@ if main_menu_selection == "Ranking":
 
 elif main_menu_selection == "Plot Simulations":
 
-    plot_simulations_selection = st.sidebar.selectbox("Choose a Simulation Plot", ["ID"])
-
-
     # Content for new page...
-    if plot_simulations_selection == "ID":
-        st.title("Detailed Simulation Analysis")
+    st.title("Detailed Simulation Analysis")
 
-        # Text input for ID
-        input_id = st.text_input("Enter the Simulation ID", "")
+    # Text input for ID
+    input_id = st.text_input("Enter the Simulation ID", "761")
 
-        # Button to trigger analysis
-        if st.button('Analyze Simulation'):
-            if input_id:
-                try:
-                    # Convert input ID to integer
-                    ID = int(input_id)
-                    st.write(f'Analyzing simulation with ID: {ID}')
+    # Button to trigger analysis
+    if st.button('Analyze Simulation'):
+        if input_id:
+            try:
+                # Convert input ID to integer
+                ID = int(input_id)
+                st.write(f'Analyzing simulation with ID: {ID}')
 
-                    # Find the system with the given ID
-                    selected_system = None
-                    for system in systems:
-                        if system['ID'] == ID:
-                            selected_system = system
-                            break
+                # Find the system with the given ID
+                selected_system = None
+                for system in systems:
+                    if system['ID'] == ID:
+                        selected_system = system
+                        break
 
-                    if selected_system:
-                        # Display information and plots for the selected system
-                        APL = CalcAreaPerMolecule(selected_system)
-                        st.write('Membrane area per lipid:', APL)
+                if selected_system:
+                    # Display information and plots for the selected system
+                    APL = CalcAreaPerMolecule(selected_system)
+                    st.write('Membrane area per lipid:', APL)
 
-                        thickness = GetThickness(selected_system)
-                        st.write('Membrane thickness:', thickness)
+                    thickness = GetThickness(selected_system)
+                    st.write('Membrane thickness:', thickness)
 
-                        # Display equilibration times and plots
-                        st.write('Relative equilibration time for each lipid in the simulation:')
-                        ShowEquilibrationTimesGui(selected_system)
+                    # Display equilibration times and plots
+                    st.write('Relative equilibration time for each lipid in the simulation:')
+                    ShowEquilibrationTimesGui(selected_system)
 
-                        st.write('Plot form factor and C-H bond order parameters from the simulation together with experimental data if available')
-                        for lipid in selected_system['COMPOSITION']:
-                            if lipid not in lipids_dict:
-                                continue
-                            plotSimulationGui(selected_system['ID'], lipid)  # Implement the plotSimulation function accordingly
-                    else:
-                        st.error("No simulation found with the given ID.")
-                except ValueError:
-                    st.error("Please enter a valid integer ID.")
-            else:
-                st.error("Please enter a Simulation ID.")
+                    st.write('Plot form factor and C-H bond order parameters from the simulation together with experimental data if available')
+                    for lipid in selected_system['COMPOSITION']:
+                        if lipid not in lipids_dict:
+                            continue
+                        plotSimulationGui(selected_system['ID'], lipid)  # Implement the plotSimulation function accordingly
+                else:
+                    st.error("No simulation found with the given ID.")
+            except ValueError:
+                st.error("Please enter a valid integer ID.")
+        else:
+            st.error("Please enter a Simulation ID.")
 
 
 
